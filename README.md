@@ -1,30 +1,9 @@
-# my-project
+# vue自定义指令：图片缩放，移动
+[预览](https://wangrx-jerry.github.io/vue-drag-directive/disk/index.html)
+# 启动
 
-> A Vue.js project
+npm run dev 
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# 具体细节
+之前写了一个简单的demo，在其基础上改造了成指令，可参考
+[参考地址](https://github.com/wangrx-jerry/resize-img)
