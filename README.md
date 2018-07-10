@@ -1,5 +1,5 @@
 # vue自定义指令：图片缩放，移动
-[预览](https://wangrx-jerry.github.io/vue-drag-directive/disk/index.html)
+[预览](https://wangrx-jerry.github.io/vue-drag-directive/dist/index.html)
 # 启动
 
 npm run dev 
