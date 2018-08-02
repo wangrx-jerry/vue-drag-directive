@@ -2,21 +2,26 @@
 <div>
 <h3 class="tc">Drag Directive By WRX</h3>
   <!-- 容器 -->
-	<div id="container" v-drag>
-		<!-- 拖动部分 -->
-		<div id="box" v-bind:style="{backgroundImage:'url(' + imgSrc + ')'}">
-			<!-- 拖动点 -->
-			<div id="coor"></div>
-		</div>
-	</div> 
+	<div id="container" v-drag="{multiple: true, scopeLimit: false}">
+		<template v-for="(item, index) in images">
+			<!-- 拖动部分 -->
+			<div class="box" :key="index" :id="'box' + index">
+				<img :src="item.src" alt="" :id="'img'+index">
+				<!-- 拖动点 -->
+				<div class="coor" title="拖动缩放" :id="'coor' + index"></div>
+			</div>
+		</template>
+	</div>
 </div>
 </template>
 <script>
 import imgSrc from '@/assets/images/1.jpg'
+import imgSrc2 from '@/assets/logo.png'
 export default {
   name: 'HelloWorld',
   data () {
     return {
+		images: [{src: imgSrc}, {src: imgSrc2}, {src: imgSrc}, {src: imgSrc2}, {src: imgSrc}],
 		imgSrc: imgSrc,
     }
   },
@@ -26,7 +31,7 @@ export default {
 </script>
 
 <style scoped>
-#container, #box, #coor{
+#container, .box, .coor{
 	box-sizing: border-box
 }
 #container {
@@ -37,7 +42,7 @@ export default {
 	background-color: #ccc
 }
 
-#box {
+.box {
 	width: 200px;
 	height: 100px;
 	cursor: move;
@@ -52,8 +57,13 @@ export default {
 	background-position: center center;
 	background-repeat: no-repeat;
 }
+.box>img{
+	width: 100%;
+	height: 100%;
+	transition: all .3s;
+}
 
-#coor {
+.coor {
 	width: 10px;
 	height: 10px;
 	overflow: hidden;
@@ -62,6 +72,6 @@ export default {
 	right: 0;
 	bottom: 0;
 	background-color: #09C;
-}
+} 
 .tc{text-align: center}
 </style>

@@ -1,9 +1,15 @@
 # vue自定义指令
 功能：
-
-- 在指定容器中拖动
-- 在指定容器中缩放
-- 拖动范围和大小控制
+> 通过指令参数可以配置：
+- 指定容器中拖动（scopeLimit: true）
+- 指定容器中缩放（scopeLimit: true）
+- 拖动范围和大小控制（scopeLimit: true）
+
+> 可以拖动和缩放多张图片
+multiple: true
+
+- 如果你不想给一个区域限制图片拖动，可以将：scopeLimit设置为false
+- 如果你不需要在一个范围内显示多张图片，可以将multiple设置为false
 # 预览
 [预览](https://wangrx-jerry.github.io/vue-drag-directive/dist/index.html)
 # 启动
@@ -15,26 +21,33 @@
 - 一个缩放的控制器（coor）
 
 例如：
-```html
+```html 
 <!-- 容器 -->
-<div id="container">
-  <!-- 拖动部分 -->
-  <div id="box" v-bind:style="{backgroundImage:'url(' + imgSrc + ')'}">
-    <!-- 拖动点 -->
-    <div id="coor"></div>
-  </div>
-</div> 
+	<div id="container">
+		<template v-for="(item, index) in images">
+			<!-- 拖动部分 -->
+			<div class="box" :key="index" :id="'box' + index">
+				<img :src="item.src" alt="" :id="'img'+index">
+				<!-- 拖动点 -->
+				<div class="coor" title="拖动缩放" :id="'coor' + index"></div>
+			</div>
+		</template>
+	</div>
+</div>
 ```
 然后在容器上增加指令：v-drag，即可使用：
 ```html
-<!-- 容器 -->
-<div id="container" v-drag>
-  <!-- 拖动部分 -->
-  <div id="box" v-bind:style="{backgroundImage:'url(' + imgSrc + ')'}">
-    <!-- 拖动点 -->
-    <div id="coor"></div>
-  </div>
-</div> 
+<div id="container" v-drag="{multiple: true, scopeLimit: false}">
+		<template v-for="(item, index) in images">
+			<!-- 拖动部分 -->
+			<div class="box" :key="index" :id="'box' + index">
+				<img :src="item.src" alt="" :id="'img'+index">
+				<!-- 拖动点 -->
+				<div class="coor" title="拖动缩放" :id="'coor' + index"></div>
+			</div>
+		</template>
+	</div>
+</div>
 ```
 
 # 具体细节
