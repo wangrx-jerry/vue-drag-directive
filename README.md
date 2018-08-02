@@ -35,7 +35,7 @@ multiple: true
 	</div>
 </div>
 ```
-然后在容器上增加指令：v-drag，即可使用：
+然后在容器上增加指令：v-drag，即可使用：
 ```html
 <div id="container" v-drag="{multiple: true, scopeLimit: false}">
 		<template v-for="(item, index) in images">
