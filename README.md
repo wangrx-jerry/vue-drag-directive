@@ -1,6 +1,6 @@
 # vue自定义指令
 功能：
-> 通过指令参数可以配置：
+> 通过指令参数可以配置：
 - 指定容器中拖动（scopeLimit: true）
 - 指定容器中缩放（scopeLimit: true）
 - 拖动范围和大小控制（scopeLimit: true）
