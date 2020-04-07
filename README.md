@@ -12,22 +12,19 @@ multiple: true
 - 如果你不需要在一个范围内显示多张图片，可以将multiple设置为false
 # 预览
 [预览](https://wangrx-jerry.github.io/vue-drag-directive/dist/index.html)
-# 启动
-1. npm i
-2. npm run dev 
+
 # 使用
 - 需要一个容器(container)：限定可拖拽范围
 - 一个存放img的容器(box)
 - 一个缩放的控制器（coor）
 
 例如：
-```html 
+```html
 <!-- 容器 -->
 	<div id="container">
 		<template v-for="(item, index) in images">
 			<!-- 拖动部分 -->
 			<div class="box" :key="index" :id="'box' + index">
-				<img :src="item.src" alt="" :id="'img'+index">
 				<!-- 拖动点 -->
 				<div class="coor" title="拖动缩放" :id="'coor' + index"></div>
 			</div>
@@ -41,7 +38,6 @@ multiple: true
 		<template v-for="(item, index) in images">
 			<!-- 拖动部分 -->
 			<div class="box" :key="index" :id="'box' + index">
-				<img :src="item.src" alt="" :id="'img'+index">
 				<!-- 拖动点 -->
 				<div class="coor" title="拖动缩放" :id="'coor' + index"></div>
 			</div>
