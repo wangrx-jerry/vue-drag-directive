@@ -6,8 +6,8 @@
 		<template v-for="(item, index) in images">
 			<!-- 拖动部分 -->
 			<div class="box" :key="index" :id="'box' + index">
-				<img :src="item.src" alt="" :id="'img'+index">
 				<!-- 拖动点 -->
+				{{item}}
 				<div class="coor" title="拖动缩放" :id="'coor' + index"></div>
 			</div>
 		</template>
@@ -15,14 +15,11 @@
 </div>
 </template>
 <script>
-import imgSrc from '@/assets/images/1.jpg'
-import imgSrc2 from '@/assets/logo.png'
 export default {
   name: 'HelloWorld',
   data () {
     return {
-		images: [{src: imgSrc}, {src: imgSrc2}, {src: imgSrc}, {src: imgSrc2}, {src: imgSrc}],
-		imgSrc: imgSrc,
+		images: [1,2,3,4,6,7],
     }
   },
   created() {
@@ -72,6 +69,6 @@ export default {
 	right: 0;
 	bottom: 0;
 	background-color: #09C;
-} 
+}
 .tc{text-align: center}
 </style>

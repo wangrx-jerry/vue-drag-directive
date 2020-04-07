@@ -1,7 +1,7 @@
 {
-  "name": "my-project",
+  "name": "drag",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "vue 拖动缩放指令",
   "author": "RongxiangWang <550995259@qq.com>",
   "private": true,
   "scripts": {

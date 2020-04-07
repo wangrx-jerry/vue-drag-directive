@@ -1,9 +1,9 @@
-//参考地址： https: //www.cnblogs.com/moqiutao/p/8334780.htmlimport Vue from 'vue'
+//参考地址： https: //www.cnblogs.com/moqiutao/p/8334780.html
 //官网地址： https://cn.vuejs.org/v2/api/#Vue-delete
 import Vue from 'vue'
 let container = null,
 	left = 0,
-	top = 0, 
+	top = 0,
 	maxHeight = 0,
 	options = {
 	  multiple: false,
@@ -21,7 +21,7 @@ function removeDefaultAction(dom){//移除图片默认拖动行为
 	if (dom) {
 		dom.addEventListener('mousedown',(e)=>{
 			e.preventDefault()
-		}) 
+		})
 	}
 }
 
@@ -29,19 +29,9 @@ function boxAction(dom, el) {//移动控制器
 	dom.addEventListener('mousedown', (event)=>{
 		let box = dom;
 		changeIndex(el, box)
-		if (event.target.nodeName === 'DIV') {
-			return;
-		}
-		let left = 0,
-			top = 0;
-		if (event.target.nodeName === 'IMG') {
-			left = event.target.parentElement.offsetLeft;
-			top = event.target.parentElement.offsetTop;
-		}else{
-			left = event.target.offsetLeft;
-			top = event.target.offsetTop;
-		}
-		var x = event.pageX - left - el.offsetLeft, //pageX和pageX：都是相对浏览器左上角的点为参照点，但是pagex不会随页面滚动改变参考值（document左上角），pagex：可视区左上角
+		let left = event.target.offsetLeft;
+		top = event.target.offsetTop;
+		var x = event.pageX - left - el.offsetLeft, //pageX和clientx：都是相对浏览器左上角的点为参照点，但是pagex不会随页面滚动改变参考值（document左上角），clientx：可视区左上角
 			y = event.pageY - top - el.offsetTop;
 		event.posix = {x, y};
 		dragObj.move = true;
@@ -90,7 +80,7 @@ function judgeState(n, el, boxs, i) { // 判断是否在容器范围内/或者�
 	if (dragBox.w > container.offsetWidth) {
 		box.style.width = container.offsetWidth + 'px';
 		flowDom(n, el, boxs, i);
-		
+
 	}
 	if (dragBox.h > container.offsetHeight) {
 		box.style.height = container.offsetHeight + 'px';
@@ -99,7 +89,7 @@ function judgeState(n, el, boxs, i) { // 判断是否在容器范围内/或者�
 
 }
 
-function flowDom(n, el, boxs, i){//控制多张图片的排版
+function flowDom(n, el, boxs, i){//控制多张图片的排版（待优化）
 	let size = boxs.length;
 	if (size <= 2) {
 		n.style.width = Math.floor(el.offsetWidth / size) - 1 + 'px';
@@ -114,8 +104,8 @@ function flowDom(n, el, boxs, i){//控制多张图片的排版
 	maxHeight = Math.max(maxHeight, n.offsetHeight);
 	if (i === 2) {
 		left = 0;
-		top = maxHeight;	
-	} 
+		top = maxHeight;
+	}
 }
 export default {
 	install() {
@@ -126,6 +116,7 @@ export default {
 				}
 				container = el;
 
+				// 如果容器内部是图片
 				let images = el.querySelectorAll('img');
 				for (const n of images) {
 					removeDefaultAction(n);
@@ -141,7 +132,7 @@ export default {
 					}
 					boxAction(n, el);
 					coorAction(n, el);
-				} 
+				}
 
 				document.addEventListener('mousemove', function (event) {
 					if (!!dragObj.move) {
@@ -151,7 +142,7 @@ export default {
 				})
 
 				document.addEventListener('mouseup', function (e) { //鼠标停止点击将所有的状态置为初始状态
-					if (!!dragObj.move) { 
+					if (!!dragObj.move) {
 						if (options.scopeLimit) {
 							for (let i = 0; i < boxs.length; i++) {
 								let n = boxs[i];
@@ -159,7 +150,7 @@ export default {
 							}
 						}
 						dragObj.move = false;
-						dragObj.call_size = null; 
+						dragObj.call_size = null;
 					}
 				});
 			}
